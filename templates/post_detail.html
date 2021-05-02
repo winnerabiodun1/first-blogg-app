@@ -5,7 +5,7 @@
         <h2>{{ post.title }}</h2>
         <p>{{ post.body }}</p>
         <hr>
-        <p><a href="{% url 'add_comment_to_post' %}">Add comment</a></p>
+        <p><a href="{% url 'add_comment_to_post' pk=post.id %}">Add comment</a></p>
 {% for comment in post.comments.all %}
         <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
     {% if user.is_authenticated or comment.approved_comment %}
@@ -23,7 +23,7 @@
     {% endif %}
 {% empty %}
     <p>No comments here yet :(</p>
-    <p><a href="{% url 'add_comment_to_post' %}">Add one</a></p>
+    <p><a href="{% url 'add_comment_to_post' pk=post.id %}">Add one</a></p>
 {% endfor %}
     </div>
 <a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a>
